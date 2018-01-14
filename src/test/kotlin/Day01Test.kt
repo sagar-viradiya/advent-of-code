@@ -1,7 +1,6 @@
-import com.google.common.base.Charsets
-import com.google.common.io.Resources
 import org.junit.Assert.*
 import org.junit.Test
+import utils.getInput
 
 /**
  * Created by sagar on 13/01/18.
@@ -17,7 +16,7 @@ class Day01Test {
 
     @Test
     fun `part1 actual input test`() {
-        assertEquals(1203, Day01.part1(Resources.toString(Resources.getResource("day01.txt"), Charsets.UTF_8)))
+        assertEquals(1203, Day01.part1(getInput("day01.txt")))
     }
 
     @Test
@@ -28,7 +27,7 @@ class Day01Test {
 
     @Test
     fun `part2 actual input test`() {
-        assertEquals(1146, Day01.part2(Resources.toString(Resources.getResource("day01.txt"), Charsets.UTF_8)))
+        assertEquals(1146, Day01.part2(getInput("day01.txt")))
     }
 
 }

@@ -1,3 +1,5 @@
+import utils.toIntList
+
 /**
  * Created by sagar on 06/01/18.
  */
@@ -6,7 +8,7 @@ object Day01 {
 
     fun part1(input: String) : Int {
 
-        val digitSequence = input.trim().map { it.toString().toInt() }.toMutableList()
+        val digitSequence = input.toIntList().toMutableList()
         digitSequence.add(digitSequence[0])
 
         return (0..digitSequence.size-2)
@@ -23,7 +25,7 @@ object Day01 {
 
         val modifiedInput = input + input.subSequence(0, input.length/2)
 
-        val digitInput = modifiedInput.trim().map { it.toString().toInt() }
+        val digitInput = modifiedInput.toIntList()
 
         return  (0 until size)
                 .filter { digitInput[it] == digitInput[it + (size/2)] }
