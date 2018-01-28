@@ -16,4 +16,14 @@ class Day04Test {
     fun `part 01 actual test`() {
         Assert.assertEquals(455, Day04.part1(getInput("day04.txt")))
     }
+
+    @Test
+    fun `part 02 sample test`() {
+        Assert.assertEquals(3, Day04.part2(getInput("day04sample2.txt")))
+    }
+
+    @Test
+    fun `part 02 actual test`() {
+        Assert.assertEquals(186, Day04.part2(getInput("day04.txt")))
+    }
 }
