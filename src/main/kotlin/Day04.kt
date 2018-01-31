@@ -44,10 +44,10 @@ object Day04 {
 
                     charList = word2.toMutableList()
 
-                    for (i in 0 until word1.length) {
+                    for (k in 0 until word1.length) {
 
-                        if (charList.contains(word1[i])) {
-                            charList.removeAt(charList.indexOf(word1[i]))
+                        if (charList.contains(word1[k])) {
+                            charList.removeAt(charList.indexOf(word1[k]))
                         } else {
                             break
                         }
