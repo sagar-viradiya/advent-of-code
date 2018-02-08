@@ -9,6 +9,7 @@ import java.util.regex.Pattern
 
 private val NEWLINE = Pattern.compile("\\r?\\n")
 private val WHITESPACE = Pattern.compile("\\s+")
+private val COMMA = Pattern.compile(",\\s*")
 
 fun String.splitAtNewLines() : List<String> {
     return trim().split(NEWLINE)
@@ -16,6 +17,10 @@ fun String.splitAtNewLines() : List<String> {
 
 fun String.splitAtWhiteSpace() : List<String> {
     return trim().split(WHITESPACE)
+}
+
+fun String.splitAtComma(): List<String> {
+    return trim().split(COMMA)
 }
 
 fun List<String>.toIntList() : List<Int> {
