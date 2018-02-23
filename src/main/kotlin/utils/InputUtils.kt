@@ -30,3 +30,6 @@ fun List<String>.toIntList() : List<Int> {
 fun String.toIntList() : List<Int> {
     return trim().map { it.toString().toInt() }
 }
+
+infix fun Int.inc(value: Int) = this + value
+infix fun Int.dec(value: Int) = this - value
