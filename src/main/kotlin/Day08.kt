@@ -5,9 +5,11 @@ import utils.splitAtWhiteSpace
 
 object Day08 {
 
-    fun part1(input: String) : Int {
+    fun part1(input: String, trackHighestValue: Boolean = false) : Int {
 
         val valueMap = mutableMapOf<String, Int>()
+
+        var highestValue: Int? = null
 
         input.splitAtNewLines().forEach {
 
@@ -18,27 +20,33 @@ object Day08 {
 
             if (evaluateCondition(condition, valueMap)) {
 
-                if (operation.contains(" inc ")) {
+                val operationSplit = operation.splitAtWhiteSpace()
 
-                    val operationSplit = operation.split(" inc ")
+                if (operationSplit[1] == "inc") {
                     valueMap[operationSplit[0]] = (valueMap[operationSplit[0]] ?: 0) inc
-                            operationSplit[1].toInt()
-
+                            operationSplit[2].toInt()
                 } else {
-
-                    val operationSplit = operation.split(" dec ")
                     valueMap[operationSplit[0]] = (valueMap[operationSplit[0]] ?: 0) dec
-                            operationSplit[1].toInt()
+                            operationSplit[2].toInt()
+                }
 
+                if (trackHighestValue && (highestValue == null || highestValue!! < valueMap[operationSplit[0]]!!)) {
+                    highestValue = valueMap[operationSplit[0]]
                 }
 
             }
 
         }
 
-        return valueMap.values.max() ?: throw IllegalStateException("Freak out!!!")
+        return if (trackHighestValue) {
+            highestValue ?: throw IllegalStateException("Freak out!!!")
+        } else {
+            valueMap.values.max() ?: throw IllegalStateException("Freak out!!!")
+        }
 
     }
+
+    fun part2(input: String) = part1(input, true)
 
     private fun evaluateCondition(condition: String, valueMap: Map<String, Int>) : Boolean {
 
