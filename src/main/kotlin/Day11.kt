@@ -3,7 +3,7 @@ import kotlin.math.abs
 
 object Day11 {
 
-    fun part1(input: String) : Int {
+    fun part1(input: String): Int {
 
         return input
             .splitAtComma()
@@ -14,9 +14,9 @@ object Day11 {
 
     data class HexCoordinates(private val x: Int = 0, private val y: Int = 0, private val z: Int = 0) {
 
-        fun move(direction: String) : HexCoordinates {
+        fun move(direction: String): HexCoordinates {
 
-            return when(direction) {
+            return when (direction) {
                 "n" -> copy(y = y + 1, z = z - 1)
                 "ne" -> copy(x = x + 1, z = z - 1)
                 "se" -> copy(x = x + 1, y = y - 1)
@@ -28,7 +28,7 @@ object Day11 {
 
         }
 
-        fun calculateDistanceFromOrigin() : Int = (abs(x) + abs(y) + abs(z)) / 2
+        fun calculateDistanceFromOrigin(): Int = (abs(x) + abs(y) + abs(z)) / 2
 
     }
 
