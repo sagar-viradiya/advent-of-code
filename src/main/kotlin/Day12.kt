@@ -13,12 +13,30 @@ object Day12 {
 
         val reachablePrograms = mutableListOf(0)
 
-        calculateReachableProgram(reachablePrograms, programMap[0]!!, programMap)
+        calculateReachableProgram(reachablePrograms, 0, programMap)
 
         return reachablePrograms.size
     }
 
-    private fun parseInput(input: String) : Map<Int, List<Int>> {
+    fun part2(input: String) : Int {
+
+        val programMap = parseInput(input)
+
+        var reachablePrograms: MutableList<Int>
+
+        var groupCount = 0
+
+        while (!programMap.isEmpty()) {
+            reachablePrograms = mutableListOf(programMap.keys.elementAt(0))
+            calculateReachableProgram(reachablePrograms, programMap.keys.elementAt(0), programMap)
+            reachablePrograms.clear()
+            groupCount++
+        }
+
+        return groupCount
+    }
+
+    private fun parseInput(input: String) : MutableMap<Int, List<Int>> {
 
         val mutableProgramMap = mutableMapOf<Int, List<Int>>()
 
@@ -34,16 +52,18 @@ object Day12 {
 
     private fun calculateReachableProgram(
         reachableProgramList: MutableList<Int>,
-        programList: List<Int>,
-        programMap: Map<Int, List<Int>>
+        programKey: Int,
+        programMap: MutableMap<Int, List<Int>>
     ) {
 
-        for (program in programList) {
+        for (program in programMap[programKey]!!) {
             if (!reachableProgramList.contains(program)) {
                 reachableProgramList.add(program)
-                programMap[program]?.let { calculateReachableProgram(reachableProgramList, it, programMap) }
+                calculateReachableProgram(reachableProgramList, program, programMap)
             }
         }
+
+        programMap.remove(programKey)
 
     }
 
