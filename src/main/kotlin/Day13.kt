@@ -10,6 +10,27 @@ object Day13 {
 
     }
 
+    fun part2(input: String) : Int {
+
+        val fireWallMap = parseInput(input)
+
+        return generateSequence(0) { it + 1 }.filter { delay ->
+
+            fireWallMap.entries.forEach { (depth, range) ->
+
+                if ((depth + delay) % ((range - 1) * 2) == 0) {
+                    return@filter false
+                }
+
+            }
+
+            true
+
+        }.first()
+
+    }
+
+
     private fun parseInput(input: String) : Map<Int, Int> {
 
         var temp: List<String>
