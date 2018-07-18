@@ -8,22 +8,34 @@ object Day15 {
 
 
     fun part1(startA: Long, startB: Long): Int {
-        var previousA = startA
-        var previousB = startB
+
+        return getGenerator(startA, MULTIPLICATION_FACTOR_A)
+                .zip(getGenerator(startB, MULTIPLICATION_FACTOR_B))
+                .take(40000000)
+                .filter { it.first == it.second }
+                .count()
+    }
+
+    fun part2(startA: Long, startB: Long): Int {
+
+        return getGenerator(startA, MULTIPLICATION_FACTOR_A, 4)
+                .zip(getGenerator(startB, MULTIPLICATION_FACTOR_B, 8))
+                .take(5000000)
+                .filter { it.first == it.second }
+                .count()
+    }
+
+    private fun getGenerator(start: Long, multiplicationFactor: Int, multiple: Int = 1): Sequence<Short> {
 
         return buildSequence {
-
+            var previous = start
             while (true) {
-                previousA = (previousA * MULTIPLICATION_FACTOR_A) % DIVISION_FACTOR
-                previousB = (previousB * MULTIPLICATION_FACTOR_B) % DIVISION_FACTOR
-                yield(Pair(previousA.toShort(), previousB.toShort()))
+                previous = (previous * multiplicationFactor) % DIVISION_FACTOR
+                if (multiple == 1 || previous % multiple == 0L) {
+                    yield(previous.toShort())
+                }
             }
-
         }
-        .take(40000000)
-        .filter { it.first == it.second }
-        .count()
-
     }
 
 }
