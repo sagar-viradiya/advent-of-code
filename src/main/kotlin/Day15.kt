@@ -1,5 +1,3 @@
-import kotlin.coroutines.experimental.buildSequence
-
 object Day15 {
 
     private const val  MULTIPLICATION_FACTOR_A = 16807
@@ -27,7 +25,7 @@ object Day15 {
 
     private fun getGenerator(start: Long, multiplicationFactor: Int, multiple: Int = 1): Sequence<Short> {
 
-        return buildSequence {
+        return sequence {
             var previous = start
             while (true) {
                 previous = (previous * multiplicationFactor) % DIVISION_FACTOR
