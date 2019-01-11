@@ -16,6 +16,15 @@ object Day20 {
         return parseInput(input).minBy { it.acceleration.distance() }?.id ?: throw IllegalStateException("Freak out!!")
     }
 
+    fun part2(input: String): Int {
+        return (1..1000).fold(parseInput(input)) { acc, _ ->
+            acc.map { it.update() }
+                .groupBy { it.position }
+                .filterValues { it.size == 1 }
+                .flatMap { it.value }
+        }.size
+    }
+
     private fun parseInput(input: String): List<Particle> {
         return input.splitAtNewLines().mapIndexed { index, s ->
             s.split("<", ">").let {
