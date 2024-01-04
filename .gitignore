@@ -1,5 +1,4 @@
 .DS_Store
-.idea/shelf
 /android.tests.dependencies
 /confluence/target
 /dependencies
@@ -21,3 +20,7 @@ ultimate/out
 ultimate/tmp
 ultimate/workspace.xml
 ultimate/*.versionsBackup
+/.idea/
+/.gradle/
+/AOC-2017/build/
+/core/build/
