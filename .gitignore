@@ -24,3 +24,4 @@ ultimate/*.versionsBackup
 /.gradle/
 /AOC-2017/build/
 /core/build/
+/AOC-2023/build/

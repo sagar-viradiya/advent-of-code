@@ -10,6 +10,8 @@ import java.util.regex.Pattern
 private val NEWLINE = Pattern.compile("\\r?\\n")
 private val WHITESPACE = Pattern.compile("\\s+")
 private val COMMA = Pattern.compile(",\\s*")
+private val COLON = Pattern.compile(":\\s*")
+private val SEMI_COLON = Pattern.compile(";\\s*")
 
 fun String.splitAtNewLines() : List<String> {
     return trim().split(NEWLINE)
@@ -21,6 +23,14 @@ fun String.splitAtWhiteSpace() : List<String> {
 
 fun String.splitAtComma(): List<String> {
     return trim().split(COMMA)
+}
+
+fun String.splitAtColon(): List<String> {
+    return trim().split(COLON)
+}
+
+fun String.splitAtSemiColon(): List<String> {
+    return trim().split(SEMI_COLON)
 }
 
 fun List<String>.toIntList() : List<Int> {
