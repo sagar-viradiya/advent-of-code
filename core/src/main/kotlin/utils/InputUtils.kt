@@ -8,6 +8,7 @@ import java.util.regex.Pattern
 
 
 private val NEWLINE = Pattern.compile("\\r?\\n")
+private val NEW_EMPTY_LINE = Pattern.compile("\\n\\n")
 private val WHITESPACE = Pattern.compile("\\s+")
 private val COMMA = Pattern.compile(",\\s*")
 private val COLON = Pattern.compile(":\\s*")
@@ -15,6 +16,10 @@ private val SEMI_COLON = Pattern.compile(";\\s*")
 
 fun String.splitAtNewLines() : List<String> {
     return trim().split(NEWLINE)
+}
+
+fun String.splitAtNewEmptyLines() : List<String> {
+    return trim().split(NEW_EMPTY_LINE)
 }
 
 fun String.splitAtWhiteSpace() : List<String> {
@@ -51,6 +56,6 @@ infix fun Int.inc(value: Int) = this + value
 infix fun Int.dec(value: Int) = this - value
 
 fun Int.toHexString() : String {
-    val hex = java.lang.Integer.toHexString(this)
+    val hex = Integer.toHexString(this)
     return if (hex.length == 1) "0$hex" else hex
 }
